@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+
+
+    <bean id="stu" class="com.atguigu.spring5.collectionTest.Stu">
+        <!--数组类型的注入(list/array标签)-->
+        <property name="course" >
+            <list>
+                <value>java</value>
+                <value>c语言</value>
+            </list>
+        </property>
+        <!--list类型注入-->
+        <property name="list">
+            <list>
+                <value>张三</value>
+                <value>小三</value>
+            </list>
+        </property>
+        <!--map类型注入-->
+        <property name="maps">
+            <map>
+               <entry key="JAVA" value="java"></entry>
+                <entry key="c" value="c"></entry>
+            </map>
+        </property>
+        <!--set类型注入-->
+        <property name="sets">
+            <set>
+                <value>mysql</value>
+                <value>sqlyog</value>
+            </set>
+        </property>
+        <!--list类型注入带泛型的类型是Course-->
+        <property name="courseList">
+            <list>
+                <ref bean="course"></ref>
+                <ref bean="course1"></ref>
+            </list>
+
+        </property>
+    </bean>
+    <bean id="course" class="com.atguigu.spring5.collectionTest.Course">
+        <property name="cname" value="Spring5"></property>
+    </bean>
+    <bean id="course1" class="com.atguigu.spring5.collectionTest.Course">
+        <property name="cname" value="Spring51"></property>
+    </bean>
+
+
+    <!--把集合(list)部分提取出来-->
+    <util:list id="bookList">
+        <value>C语言</value>
+        <value>计算机网络</value>
+        <value>javaWeb</value>
+    </util:list>
+
+<!--    <bean id="book" class="com.atguigu.spring5.collectionTest.Book" scope="singleton">-->
+         <!--默认是单实例的(特点：加载配置文件的时候就会加载对象)-->
+<!--        <property name="list" ref="bookList"></property>-->
+<!--    </bean>-->
+        <bean id="book" class="com.atguigu.spring5.collectionTest.Book" scope="prototype">
+            <!--scope="prototype"(多实例 特点：加载的配置文件的时候不是加载对象，获取对象的时候才会加载对象)-->
+            <property name="list" ref="bookList"></property>
+        </bean>
+
+
+
+</beans>

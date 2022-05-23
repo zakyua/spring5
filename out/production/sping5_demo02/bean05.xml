@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+
+   <!--
+   自动装箱
+   autowire属性
+   byName:根据属性名称注入(需要和注入的bean的id相同)
+   byType:根据属性类型注入
+
+   -->
+  <bean id="emp" class="com.atguigu.autowire.emp" autowire="byName"></bean>
+
+   <bean id="dept" class="com.atguigu.autowire.Dept"></bean>
+</beans>

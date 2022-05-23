@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+
+
+
+    <!--开启组件扫描-->
+    <context:component-scan base-package="com.atguigu.spring5.Aop"></context:component-scan>
+
+    <!--
+    开启Aspect生成代理对象
+    -->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    <!--
+    Aop注解的小结：
+    重用切入点：
+    @pointCut(value="execution(* com.atguigu.spring5.Aop.User.add(..))")
+    public void pointCut(){
+    }
+
+    @Before(value="pointCut()")
+    public void before(){
+    }
+
+    对切入点进行增强的优先级
+    @Order(数字) 0优先级最高,依次类推
+    -->
+
+
+</beans>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    p名称空间注入
+    xmlns:p="http://www.springframework.org/schema/p"
+    使用xml文件的约束
+    -->
+
+
+
+    <!--
+     配置User对象创建
+    -->
+    <bean id="user" class="com.atguigu.spring.User"></bean>
+    <bean id="book" class="com.atguigu.spring.Book">
+        <!-- 使用property完成属性的赋值-->
+        <property name="bname" value="java"/>
+        <property name="bauthor" value="李杭鞠"/>
+        <!--设置空值-->
+<!--        <property name="address">-->
+<!--            <null/>-->
+<!--        </property>-->
+        <!--设置特殊符号
+         1.使用转义字符
+         2.写入CDATA
+        -->
+        <property name="address">
+            <value><![CDATA[<南京>]]></value>
+        </property>
+      </bean>
+
+
+<!--    &lt;!&ndash;使用p空间注入&ndash;&gt;-->
+<!--    <bean id="book" class="com.atguigu.spring.Book" p:bauthor="无名氏" p:bname="九阳神功">-->
+
+<!--    </bean>-->
+    <bean id="order" class="com.atguigu.spring.Orders">
+       <constructor-arg name="oname" value="电脑"></constructor-arg>
+        <constructor-arg name="addRess" value="陕西"></constructor-arg>
+    </bean>
+
+    <bean id="userDAO" class="com.atguigu.spring.dao.impl.UserDAOImpl">
+
+    </bean>
+
+    <bean id="userService" class="com.atguigu.spring.service.UserService">
+        <property name="userDAO" ref="userDAO"/>
+    </bean>
+
+    <bean id="dept" class="com.atguigu.spring.bean.Dept">
+        <property name="dname" value="财务部"></property>
+     </bean>
+
+<!--    <bean id="emp" class="com.atguigu.spring.bean.emp">-->
+<!--        <property name="ename" value="lucy"></property>-->
+<!--        <property name="gender" value="nv"></property>-->
+<!--        &lt;!&ndash;属性是一个类类型&ndash;&gt;-->
+<!--        <property name="dept">-->
+<!--            <bean id="dept" class="com.atguigu.spring.bean.Dept">-->
+<!--                <property name="dname" value="安保部"></property>-->
+<!--            </bean>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+
+    <bean id="emp" class="com.atguigu.spring.bean.emp">
+        <property name="ename" value="lucy"></property>
+        <property name="gender" value="nv"></property>
+        <!--属性是一个类类型  级联赋值-->
+        <property name="dept" ref="dept"></property>
+        <property name="dept.dname" value="技术部"></property>
+     </bean>
+
+
+</beans>
